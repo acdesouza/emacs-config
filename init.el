@@ -12,6 +12,10 @@
 
 (set-face-attribute 'default nil :font "Menlo-16")
 
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; Initialize package sources
 (require 'package)
 (add-to-list 'package-archives
