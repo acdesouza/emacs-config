@@ -5,6 +5,8 @@
 (scroll-bar-mode -1)	;; Removes scrollbar
 (global-linum-mode 1)	;; Add line number
 
+(setq column-number-mode t) ;; Show current column
+
 (add-to-list 'before-save-hook 'delete-trailing-whitespace) ;; Remove whitespaces before save file
 
 
@@ -41,3 +43,31 @@
   :config
   (show-paren-mode t)
   (setq show-paren-style 'expression))
+
+;; Rinari
+;; - open rails server inside emacs to have a link on error stacktrace
+;; - extract selected code to a partial
+
+;; Enhanced Ruby mode
+;; It uses the Ripper class found in ruby 1.9.2 (and later) to parse and indent the source code
+(use-package enh-ruby-mode
+  :ensure t
+  :defer t
+  :mode (("\\.rb\\'"       . enh-ruby-mode)
+         ("\\.ru\\'"       . enh-ruby-mode)
+	 ("\\.jbuilder\\'" . enh-ruby-mode)
+         ("\\.gemspec\\'"  . enh-ruby-mode)
+         ("\\.rake\\'"     . enh-ruby-mode)
+         ("Rakefile\\'"    . enh-ruby-mode)
+         ("Gemfile\\'"     . enh-ruby-mode)
+         ("Guardfile\\'"   . enh-ruby-mode)
+         ("Capfile\\'"     . enh-ruby-mode)
+         ("Vagrantfile\\'" . enh-ruby-mode))
+  :config (progn
+	    (setq enh-ruby-indent-level 2
+		  enh-ruby-add-encoding-comment-on-save nil
+		  enh-ruby-deep-indent-paren nil
+		  enh-ruby-bounce-deep-indent t
+		  enh-ruby-hanging-indent-level 2)
+	    (setq enh-ruby-program "/usr/bin/ruby")
+	    (setq ruby-insert-encoding-magic-comment nil)))
