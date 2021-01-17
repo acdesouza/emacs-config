@@ -7,7 +7,8 @@
 
 (setq column-number-mode t) ;; Show current column
 
-(add-to-list 'before-save-hook 'delete-trailing-whitespace) ;; Remove whitespaces before save file
+;; Remove whitespaces before save file
+(add-to-list 'before-save-hook 'delete-trailing-whitespace)
 
 
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; Auto-indent
@@ -36,6 +37,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+
+;; Theme
 (use-package gruvbox-theme
   :ensure t
   :init
@@ -44,6 +47,21 @@
   (show-paren-mode t)
   (setq show-paren-style 'expression))
 
+
+;; Status bar
+
+;; I don't want to download new fonts for this
+;; (use-package all-the-icons)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config (progn
+	    (setq doom-modeline-unicode-fallback t
+		  doom-modeline-icon nil ;; (display-graphic-p)
+		  doom-modeline-minor-modes t)))
+
+
+;; Ruby
 ;; Rinari
 ;; - open rails server inside emacs to have a link on error stacktrace
 ;; - extract selected code to a partial
