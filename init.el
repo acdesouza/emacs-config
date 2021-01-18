@@ -61,6 +61,25 @@
 		  doom-modeline-minor-modes t)))
 
 
+
+;; Project
+;; EDE and CEDET don't work with Ruby
+
+;; IDO
+;; https://www.gnu.org/software/emacs/manual/html_mono/ido.html
+
+(use-package ido
+  :ensure t
+  :init (progn
+	  (ido-mode t)
+	  (use-package flx-ido
+	    :init (flx-ido-mode 1)
+	    :ensure t
+	    ;; https://github.com/lewang/flx#memory-usage
+	    :config (setq gc-cons-threshold 20000000))))
+
+
+
 ;; Ruby
 ;; Rinari
 ;; - open rails server inside emacs to have a link on error stacktrace
