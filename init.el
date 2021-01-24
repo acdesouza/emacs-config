@@ -64,6 +64,13 @@
 
 ;; Project
 ;; EDE and CEDET don't work with Ruby
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
 
 ;; IDO
 ;; https://www.gnu.org/software/emacs/manual/html_mono/ido.html
@@ -76,7 +83,10 @@
 	    :init (flx-ido-mode 1)
 	    :ensure t
 	    ;; https://github.com/lewang/flx#memory-usage
-	    :config (setq gc-cons-threshold 20000000))))
+	    :config (setq gc-cons-threshold 20000000))
+	  (use-package ido-grid-mode
+	    :ensure t
+	    :init (ido-grid-mode t))))
 
 
 
