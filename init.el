@@ -70,7 +70,18 @@
   (projectile-mode +1)
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
+              ("C-c p" . projectile-command-map))
+  :config (progn
+            (setq initial-scratch-message
+                  (concat "# Recent projects\n\n"
+                          (mapconcat (apply-partially #'format " - %s")
+                                     (projectile-relevant-known-projects) "\n")))
+            (run-with-idle-timer 0.1 nil (lambda ()
+                                           (with-current-buffer "*scratch*"
+                                             (flyspell-mode-off)
+                                             (local-set-key [mouse-1] #'ffap-at-mouse))))))
+
+
 
 ;; IDO
 ;; https://www.gnu.org/software/emacs/manual/html_mono/ido.html
