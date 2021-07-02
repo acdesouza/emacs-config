@@ -1,11 +1,19 @@
+;; Use setq-default to set the common behavior
+;; https://stackoverflow.com/a/18173666/436552
+
 (setq inhibit-startup-message t)
 
 (menu-bar-mode -1)	;; Removes menu
 (tool-bar-mode -1)	;; Removes toolbar
 (scroll-bar-mode -1)	;; Removes scrollbar
-(global-linum-mode 1)	;; Add line number
 
-(setq column-number-mode t) ;; Show current column
+(global-linum-mode 1)  ;; Add line number
+(column-number-mode t) ;; Show current column
+(setq-default mode-line-percent-position nil) ;; Removes file percent position(Top % Bot)
+
+(setq-default scroll-step 1)    ;; Don't crazy jump after a one line scroll
+(setq-default truncate-lines 1) ;; Stop wrapping lines
+
 
 ;; Remove whitespaces before save file
 (add-to-list 'before-save-hook 'delete-trailing-whitespace)
