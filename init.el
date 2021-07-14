@@ -21,13 +21,22 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; Auto-indent
 
-(set-face-attribute 'default nil :font "Menlo-16")
+;; Auto revert-buffer after changed outside
+;; https://www.emacswiki.org/emacs/RevertBuffer
+(global-auto-revert-mode 1)
+
+(set-face-attribute 'default nil
+		    :family "Menlo"
+		    :height 120
+		    :weight 'normal
+		    :width  'normal)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)
   (load custom-file))
 
 ;; Initialize package sources
+;; https://github.com/jwiegley/use-package
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
