@@ -97,39 +97,34 @@
 
 
 
-;; Project
-;; EDE and CEDET don't work with Ruby
+;; Projectile
+;; https://github.com/bbatsov/projectile
+;; * EDE and CEDET don't work with Ruby
+;; * Ag: https://docs.projectile.mx/projectile/usage.html#installing-external-tools
 (use-package projectile
-  :ensure t
   :init
   (projectile-mode +1)
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
               ("C-c p" . projectile-command-map))
   :config (progn
-            (setq initial-scratch-message
-                  (concat "# Recent projects\n\n"
-                          (mapconcat (apply-partially #'format " - %s")
-                                     (projectile-relevant-known-projects) "\n")))
-            (run-with-idle-timer 0.1 nil (lambda ()
-                                           (with-current-buffer "*scratch*"
-                                             (flyspell-mode-off)
-                                             (local-set-key [mouse-1] #'ffap-at-mouse))))))
+	    (setq projectile-switch-project-action #'projectile-dired)
 
 
 
 ;; IDO
 ;; https://www.gnu.org/software/emacs/manual/html_mono/ido.html
-
+;; https://docs.projectile.mx/projectile/usage.html#minibuffer-completion
 (use-package ido
-  :ensure t
   :init (progn
 	  (ido-mode t)
 	  (use-package flx-ido
 	    :init (flx-ido-mode 1)
 	    :ensure t
 	    ;; https://github.com/lewang/flx#memory-usage
-	    :config (setq gc-cons-threshold 20000000))
+	    :config (progn
+		      (setq gc-cons-threshold 20000000)
+		      (setq ido-enable-flex-matching t)))
 	  (use-package ido-grid-mode
 	    :ensure t
 	    :init (ido-grid-mode t))))
