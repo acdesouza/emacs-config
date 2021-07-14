@@ -61,14 +61,26 @@
 
 
 
-;; Theme
-(use-package gruvbox-theme
-  :ensure t
-  :init
-  (load-theme 'gruvbox-dark-medium t)
+;; Themes
+
+;; gruvbox-theme
+;; https://github.com/greduan/emacs-theme-gruvbox
+;; (use-package gruvbox-theme
+;;   :init
+;;   (load-theme 'gruvbox-dark-medium t)
+;;   :config (progn
+;; 	    (show-paren-mode t)
+;; 	    (setq show-paren-style 'expression)))
+
+;; doom-themes
+;; https://github.com/hlissner/emacs-doom-themes
+(use-package doom-themes
   :config
-  (show-paren-mode t)
-  (setq show-paren-style 'expression))
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  :init
+  (load-theme 'doom-molokai t))
 
 
 ;; Status bar
