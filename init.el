@@ -54,6 +54,12 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Evil Mode
+;; https://github.com/emacs-evil/evil
+(use-package evil
+  :config (evil-mode 1))
+
+
 
 ;; Theme
 (use-package gruvbox-theme
