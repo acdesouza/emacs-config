@@ -83,10 +83,13 @@
   (load-theme 'doom-molokai t))
 
 
-;; Status bar
 
-;; I don't want to download new fonts for this
-;; (use-package all-the-icons)
+;; Matching Parentheses
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Matching.html
+(show-paren-mode t)
+(setq show-paren-style 'parenthesis)
+
+;; Status bar
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
