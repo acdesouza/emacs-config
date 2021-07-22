@@ -3,9 +3,9 @@
 
 (setq inhibit-startup-message t)
 
-(menu-bar-mode -1)	;; Removes menu
-(tool-bar-mode -1)	;; Removes toolbar
-(scroll-bar-mode -1)	;; Removes scrollbar
+(menu-bar-mode -1)   ;; Removes menu
+(tool-bar-mode -1)   ;; Removes toolbar
+(scroll-bar-mode -1) ;; Removes scrollbar
 
 (global-linum-mode 1)  ;; Add line number
 (column-number-mode t) ;; Show current column
@@ -17,6 +17,19 @@
 
 ;; Remove whitespaces before save file
 (add-to-list 'before-save-hook 'delete-trailing-whitespace)
+
+
+;; Don't use a TAB character(ASCII byte #9) for indentation
+;; https://www.jwz.org/doc/tabs-vs-spaces.html
+(setq-default indent-tabs-mode nil
+      c-basic-offset 2
+      tab-width 4)
+;; https://www.emacswiki.org/emacs/UntabifyUponSave
+;; if indent-tabs-mode is off, untabify before saving
+(add-hook 'write-file-hooks
+          (lambda () (if (not indent-tabs-mode)
+                         (untabify (point-min) (point-max)))
+            nil ))
 
 
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; Auto-indent
