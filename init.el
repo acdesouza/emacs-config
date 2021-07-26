@@ -164,30 +164,5 @@
 
 
 ;; Ruby
-;; Rinari
-;; - open rails server inside emacs to have a link on error stacktrace
-;; - extract selected code to a partial
-
-;; Enhanced Ruby mode
-;; It uses the Ripper class found in ruby 1.9.2 (and later) to parse and indent the source code
-(use-package enh-ruby-mode
-  :ensure t
-  :defer t
-  :mode (("\\.rb\\'"       . enh-ruby-mode)
-         ("\\.ru\\'"       . enh-ruby-mode)
-	 ("\\.jbuilder\\'" . enh-ruby-mode)
-         ("\\.gemspec\\'"  . enh-ruby-mode)
-         ("\\.rake\\'"     . enh-ruby-mode)
-         ("Rakefile\\'"    . enh-ruby-mode)
-         ("Gemfile\\'"     . enh-ruby-mode)
-         ("Guardfile\\'"   . enh-ruby-mode)
-         ("Capfile\\'"     . enh-ruby-mode)
-         ("Vagrantfile\\'" . enh-ruby-mode))
-  :config (progn
-	    (setq enh-ruby-indent-level 2
-		  enh-ruby-add-encoding-comment-on-save nil
-		  enh-ruby-deep-indent-paren nil
-		  enh-ruby-bounce-deep-indent t
-		  enh-ruby-hanging-indent-level 2)
-	    (setq enh-ruby-program "/usr/bin/ruby")
-	    (setq ruby-insert-encoding-magic-comment nil)))
+(use-package ruby-mode
+  :config (setq ruby-deep-arglist nil)) ;; https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/ArgumentAlignment with_fixed_indentation
