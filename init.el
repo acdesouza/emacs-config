@@ -166,3 +166,10 @@
 ;; Ruby
 (use-package ruby-mode
   :config (setq ruby-deep-arglist nil)) ;; https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/ArgumentAlignment with_fixed_indentation
+
+;; Ruby Electric
+;; Autoclose paired syntax elements like parens, quotes, etc
+;; https://github.com/ruby/elisp-ruby-electric/tree/f2323cd9b5df3b34aa9810ba8109502824925d23
+(use-package ruby-electric
+  :after (ruby-mode)
+  :config (add-hook 'ruby-mode-hook 'ruby-electric-mode))
