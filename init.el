@@ -173,3 +173,29 @@
 (use-package ruby-electric
   :after (ruby-mode)
   :config (add-hook 'ruby-mode-hook 'ruby-electric-mode))
+
+;; Rails
+;; https://github.com/asok/projectile-rails
+(use-package projectile-rails
+  :after (projectile)
+  :bind
+  (:map projectile-rails-mode-map
+	("C-c r" . projectile-rails-command-map))
+  :config
+  (evil-ex-define-cmd "AS" '(lambda ()
+			      ;; https://github.com/antono/evil-rails
+			      (interactive)
+			      (evil-window-split)
+			      (windmove-down)
+			      (projectile-toggle-between-implementation-and-test)))
+  ;; Only needed if projectile identifies a project
+  :hook (projectile-after-switch-project . projectile-rails-global-mode))
+
+;; RVM
+;; https://github.com/senny/rvm.el
+;; Sets the right ruby version and gemset.So, I can C-c r r
+;; to open a rails console for the current project
+(use-package rvm
+  :after (projectile)
+  :hook (
+  (projectile-after-switch-project . rvm-activate-corresponding-ruby)))
