@@ -224,3 +224,10 @@
 ;; slim-mode
 ;; https://github.com/slim-template/emacs-slim
 (use-package slim-mode)
+
+;; sass-mode
+;; http://github.com/nex3/haml-mode
+(use-package sass-mode
+  :mode ("\\.sass\\'" . sass-mode))
+
+(use-package haml-mode)
