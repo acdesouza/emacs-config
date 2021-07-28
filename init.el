@@ -220,3 +220,7 @@
   :mode (("\\.html\\'" . web-mode)
 ;;	 ("\\.js\\'"   . web-mode) Loses Jump To Definition. Maybe, take a look at js2-mode?
 	 ("\\.erb\\'"  . web-mode)))
+
+;; slim-mode
+;; https://github.com/slim-template/emacs-slim
+(use-package slim-mode)
