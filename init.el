@@ -65,11 +65,14 @@
 
 
 (require 'use-package)
-(setq use-package-always-ensure t)
+(custom-set-variables '(use-package-always-ensure t))
+(custom-set-variables '(use-package-always-defer t))
+(custom-set-variables '(use-package-verbose t))
 
 ;; Evil Mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
+  :defer nil
   :config (evil-mode 1))
 
 
