@@ -200,6 +200,11 @@
   :hook (
   (projectile-after-switch-project . rvm-activate-corresponding-ruby)))
 
+;; YAML Mode
+;; https://github.com/yoshiki/yaml-mode
+(use-package yaml-mode
+  :mode (("\\.yml\\'" . yaml-mode)))
+
 
 
 ;; web-mode
