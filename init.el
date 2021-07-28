@@ -79,6 +79,13 @@
 
 ;; Themes
 
+;; all-the-icons
+;; Used by:
+;;   - doom-modeline
+;;   - rg-agenda
+;; https://github.com/domtronn/all-the-icons.el
+(use-package all-the-icons)
+
 ;; gruvbox-theme
 ;; https://github.com/greduan/emacs-theme-gruvbox
 ;; (use-package gruvbox-theme
@@ -110,9 +117,63 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config (progn
-	    (setq doom-modeline-unicode-fallback t
-		  doom-modeline-icon nil ;; (display-graphic-p)
-		  doom-modeline-minor-modes t)))
+            (setq doom-modeline-unicode-fallback t
+                  doom-modeline-icon (display-graphic-p)
+                  doom-modeline-minor-modes t)))
+
+
+
+;; Org-Mode
+(use-package org
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture))
+  :mode ("\\.org$" . org-mode)
+  :config (progn
+	    (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+	    ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
+	    (setq org-agenda-category-icon-alist
+		  `(
+		    ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
+		    ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
+		    ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
+		    ))
+	    (setq org-agenda-ndays 7)
+	    (setq org-agenda-start-on-weekday nil)
+	    (setq org-agenda-skip-scheduled-if-done t)
+	    (setq org-agenda-skip-deadline-if-done t)
+	    (setq org-directory "~/org")
+	    (setq org-agenda-files (list org-directory))
+	    (setq org-default-notes-file (concat org-directory "/notes.org"))
+	    (setq org-refile-targets
+		  '((nil :maxlevel . 1)
+		    (org-agenda-files :maxlevel . 1)))
+	    (setq org-log-into-drawer "LOGBOOK")
+	    ;; https://orgmode.org/manual/Template-expansion.html
+	    (setq org-capture-templates
+		  '(("t" "Task" entry
+		     (file+headline "~/org/notes.org" "Inbox")
+		     "** TODO %^{Task}
+SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
+:PROPERTIES:
+:CREATED: %U
+:END:"
+		     :empty-lines-after 1)
+		    ("m" "Meeting" entry
+		     (file+headline "~/org/notes.org" "Meetings")
+		     "** %^{Meeting}
+%^{Starting at}T
+:PROPERTIES:
+:CREATED: %U
+:END:"
+		     :empty-lines-after 1)
+		    ("l" "Read/Watch it Later" entry
+		     (file+headline "~/org/notes.org" "Read it Later")
+		     "** TODO [[%^{URL}][%^{Title}]]
+:PROPERTIES:
+:CREATED: %U
+:END:"
+		     :empty-lines-after 1)
+		    ))))
 
 
 
