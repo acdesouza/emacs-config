@@ -166,6 +166,27 @@
 
 
 
+;; dired-sidebar
+;; current directory tree-view
+;; https://github.com/jojojames/dired-sidebar
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  :config
+  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+
+  (setq dired-sidebar-theme 'nerd
+	dired-sidebar-use-term-integration t
+	dired-sidebar-use-custom-font t
+	dired-listing-switches "-la --group-directories-first") ;; https://www.emacswiki.org/emacs/DiredSortDirectoriesFirst
+  :hook(dired-sidebar-mode . (lambda ()
+	      (unless (file-remote-p default-directory)
+                (auto-revert-mode)))))
+
+
+
 ;; Ruby
 (use-package ruby-mode
   :config (setq ruby-deep-arglist nil)) ;; https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/ArgumentAlignment with_fixed_indentation
