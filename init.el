@@ -199,3 +199,24 @@
   :after (projectile)
   :hook (
   (projectile-after-switch-project . rvm-activate-corresponding-ruby)))
+
+
+
+;; web-mode
+;; https://github.com/fxbois/web-mode
+(use-package web-mode
+  :commands (web-mode)
+  :config
+  (setq web-mode-extra-auto-pairs '(("erb"  . (("beg" "end"))))
+	web-mode-extra-expanders  '(("-/" . "<% | %>")
+				    ("=/" . "<%= | %>"))
+
+	web-mode-enable-auto-expanding t
+	web-mode-enable-auto-pairing t
+	web-mode-enable-current-element-highlight t
+	web-mode-markup-indent-offset 2
+	web-mode-css-indent-offset 2
+	web-mode-code-indent-offset 2)
+  :mode (("\\.html\\'" . web-mode)
+;;	 ("\\.js\\'"   . web-mode) Loses Jump To Definition. Maybe, take a look at js2-mode?
+	 ("\\.erb\\'"  . web-mode)))
