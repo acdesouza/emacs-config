@@ -248,6 +248,16 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
 
 
 
+;; dumb-jump
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Identifiers.html
+;; https://github.com/jacktasia/dumb-jump
+(use-package dumb-jump
+  :defer nil
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+
+
 ;; Ruby
 (use-package ruby-mode
   :config (setq ruby-deep-arglist nil)) ;; https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/ArgumentAlignment with_fixed_indentation
