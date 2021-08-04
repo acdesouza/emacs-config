@@ -39,10 +39,10 @@
 (global-auto-revert-mode 1)
 
 (set-face-attribute 'default nil
-		    :family "Menlo"
-		    :height 120
-		    :weight 'normal
-		    :width  'normal)
+            :family "Menlo"
+            :height 120
+            :weight 'normal
+            :width  'normal)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)
@@ -92,8 +92,8 @@
 ;;   :init
 ;;   (load-theme 'gruvbox-dark-medium t)
 ;;   :config (progn
-;; 	    (show-paren-mode t)
-;; 	    (setq show-paren-style 'expression)))
+;;      (show-paren-mode t)
+;;      (setq show-paren-style 'expression)))
 
 ;; doom-themes
 ;; https://github.com/hlissner/emacs-doom-themes
@@ -126,54 +126,54 @@
 ;; Org-Mode
 (use-package org
   :bind (("C-c a" . org-agenda)
-	 ("C-c c" . org-capture))
+     ("C-c c" . org-capture))
   :mode ("\\.org$" . org-mode)
   :config (progn
-	    (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-	    ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
-	    (setq org-agenda-category-icon-alist
-		  `(
-		    ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
-		    ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
-		    ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
-		    ))
-	    (setq org-agenda-ndays 7)
-	    (setq org-agenda-start-on-weekday nil)
-	    (setq org-agenda-skip-scheduled-if-done t)
-	    (setq org-agenda-skip-deadline-if-done t)
-	    (setq org-directory "~/org")
-	    (setq org-agenda-files (list org-directory))
-	    (setq org-default-notes-file (concat org-directory "/notes.org"))
-	    (setq org-refile-targets
-		  '((nil :maxlevel . 1)
-		    (org-agenda-files :maxlevel . 1)))
-	    (setq org-log-into-drawer "LOGBOOK")
-	    ;; https://orgmode.org/manual/Template-expansion.html
-	    (setq org-capture-templates
-		  '(("t" "Task" entry
-		     (file+headline "~/org/notes.org" "Inbox")
-		     "** TODO %^{Task}
+        (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)")))
+        ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
+        (setq org-agenda-category-icon-alist
+          `(
+            ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
+            ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
+            ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
+            ))
+        (setq org-agenda-ndays 7)
+        (setq org-agenda-start-on-weekday nil)
+        (setq org-agenda-skip-scheduled-if-done t)
+        (setq org-agenda-skip-deadline-if-done t)
+        (setq org-directory "~/org")
+        (setq org-agenda-files (list org-directory))
+        (setq org-default-notes-file (concat org-directory "/notes.org"))
+        (setq org-refile-targets
+          '((nil :maxlevel . 1)
+            (org-agenda-files :maxlevel . 1)))
+        (setq org-log-into-drawer "LOGBOOK")
+        ;; https://orgmode.org/manual/Template-expansion.html
+        (setq org-capture-templates
+          '(("t" "Task" entry
+             (file+headline "~/org/notes.org" "Inbox")
+             "** TODO %^{Task}
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
 :PROPERTIES:
 :CREATED: %U
 :END:"
-		     :empty-lines-after 1)
-		    ("m" "Meeting" entry
-		     (file+headline "~/org/notes.org" "Meetings")
-		     "** %^{Meeting}
+             :empty-lines-after 1)
+            ("m" "Meeting" entry
+             (file+headline "~/org/notes.org" "Meetings")
+             "** %^{Meeting}
 %^{Starting at}T
 :PROPERTIES:
 :CREATED: %U
 :END:"
-		     :empty-lines-after 1)
-		    ("l" "Read/Watch it Later" entry
-		     (file+headline "~/org/notes.org" "Read it Later")
-		     "** TODO [[%^{URL}][%^{Title}]]
+             :empty-lines-after 1)
+            ("l" "Read/Watch it Later" entry
+             (file+headline "~/org/notes.org" "Read it Later")
+             "** TODO [[%^{URL}][%^{Title}]]
 :PROPERTIES:
 :CREATED: %U
 :END:"
-		     :empty-lines-after 1)
-		    ))))
+             :empty-lines-after 1)
+            ))))
 
 
 
@@ -213,17 +213,17 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
 ;; https://docs.projectile.mx/projectile/usage.html#minibuffer-completion
 (use-package ido
   :init (progn
-	  (ido-mode t)
-	  (use-package flx-ido
-	    :init (flx-ido-mode 1)
-	    :ensure t
-	    ;; https://github.com/lewang/flx#memory-usage
-	    :config (progn
-		      (setq gc-cons-threshold 20000000)
-		      (setq ido-enable-flex-matching t)))
-	  (use-package ido-grid-mode
-	    :ensure t
-	    :init (ido-grid-mode t))))
+      (ido-mode t)
+      (use-package flx-ido
+        :init (flx-ido-mode 1)
+        :ensure t
+        ;; https://github.com/lewang/flx#memory-usage
+        :config (progn
+              (setq gc-cons-threshold 20000000)
+              (setq ido-enable-flex-matching t)))
+      (use-package ido-grid-mode
+        :ensure t
+        :init (ido-grid-mode t))))
 
 
 
@@ -239,11 +239,11 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
 
   (setq dired-sidebar-theme 'nerd
-	dired-sidebar-use-term-integration t
-	dired-sidebar-use-custom-font t
-	dired-listing-switches "-la --group-directories-first") ;; https://www.emacswiki.org/emacs/DiredSortDirectoriesFirst
+    dired-sidebar-use-term-integration t
+    dired-sidebar-use-custom-font t
+    dired-listing-switches "-la --group-directories-first") ;; https://www.emacswiki.org/emacs/DiredSortDirectoriesFirst
   :hook(dired-sidebar-mode . (lambda ()
-	      (unless (file-remote-p default-directory)
+          (unless (file-remote-p default-directory)
                 (auto-revert-mode)))))
 
 
@@ -275,14 +275,14 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
   :after (projectile)
   :bind
   (:map projectile-rails-mode-map
-	("C-c r" . projectile-rails-command-map))
+    ("C-c r" . projectile-rails-command-map))
   :config
   (evil-ex-define-cmd "AS" '(lambda ()
-			      ;; https://github.com/antono/evil-rails
-			      (interactive)
-			      (evil-window-split)
-			      (windmove-down)
-			      (projectile-toggle-between-implementation-and-test)))
+                  ;; https://github.com/antono/evil-rails
+                  (interactive)
+                  (evil-window-split)
+                  (windmove-down)
+                  (projectile-toggle-between-implementation-and-test)))
   ;; Only needed if projectile identifies a project
   :hook (projectile-after-switch-project . projectile-rails-global-mode))
 
@@ -308,18 +308,18 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
   :commands (web-mode)
   :config
   (setq web-mode-extra-auto-pairs '(("erb"  . (("beg" "end"))))
-	web-mode-extra-expanders  '(("-/" . "<% | %>")
-				    ("=/" . "<%= | %>"))
+    web-mode-extra-expanders  '(("-/" . "<% | %>")
+                    ("=/" . "<%= | %>"))
 
-	web-mode-enable-auto-expanding t
-	web-mode-enable-auto-pairing t
-	web-mode-enable-current-element-highlight t
-	web-mode-markup-indent-offset 2
-	web-mode-css-indent-offset 2
-	web-mode-code-indent-offset 2)
+    web-mode-enable-auto-expanding t
+    web-mode-enable-auto-pairing t
+    web-mode-enable-current-element-highlight t
+    web-mode-markup-indent-offset 2
+    web-mode-css-indent-offset 2
+    web-mode-code-indent-offset 2)
   :mode (("\\.html\\'" . web-mode)
-;;	 ("\\.js\\'"   . web-mode) Loses Jump To Definition. Maybe, take a look at js2-mode?
-	 ("\\.erb\\'"  . web-mode)))
+;;   ("\\.js\\'"   . web-mode) Loses Jump To Definition. Maybe, take a look at js2-mode?
+     ("\\.erb\\'"  . web-mode)))
 
 ;; slim-mode
 ;; https://github.com/slim-template/emacs-slim
