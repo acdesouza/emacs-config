@@ -1,0 +1,43 @@
+#+TITLE: AC's Organization Tutorial
+#+AUTHOR: acdesouza
+
+
+* Daily flow
+
+My main goal is having a tool to answer the questions:
+- What did I accomplish, so far?
+- What is blocked/waiting?
+- What should I do next?
+- Do I have any appointment?
+
+- TIMESTAMP: It's an appointment. This item will happens at
+- SCHEDULED means: I'd like to start at
+- DEADLINE means: It should be finished at
+
+** Start the day:
+   1. Review messages at email/Slack to [[* Adding a new task][capture tasks]]
+   2. C-c a a :: to Open org-agenda for review things scheduled for today
+   3. C-c p p :: Select the project
+   4. [[* Starting a new task][Start a task]]
+
+*** Adding a new task
+    1. C-c c (org-capture)
+    2. Select note type
+    3. Fill the blanks
+
+*** Starting a new task
+    1. C-c a (org-agenda) a
+    2. Point cursor over the desired task and hit t
+    3. Select s, for STARTED, in the prompt.
+    4. Go to work ;)
+
+*** Classifing captured tasks
+    2. C-c a a :: to Open org-agenda for review unclassified tasks
+    2. Go to the first caputured task
+    3. C-c C-w (org-refile) : refile the task to the correct org file
+
+
+** Finish the day
+   1. Open agenda
+   2. S-Right :: Move un-finished tasks to next working day, changing its TIMESTAMP
+   3. C-c $ (org-archive-subtree) :: Archive DONE headings

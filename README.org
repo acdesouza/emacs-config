@@ -1,0 +1,123 @@
+#+TITLE: AC's Personal Emacs Manual
+#+AUTHOR: acdesouza
+
+* Introduction
+
+I'm happy a Vim user since 2011, when I started my vimfiles.
+The ergonomics of [[https://danielmiessler.com/study/vim/#language][talking to your editor to make changes]] is amazing.
+And [[https://ismail.badawi.io/blog/the-compositional-nature-of-vim/][build up your skills as acquiring a new language]] is magical.
+
+Recently, the need to manage tasks from different contexts makes me wonder
+if the so-called OrgMode is so helpful as its fandom sells.
+
+Looking for a implementation of Org for Vim I found some projects in a [[https://www.reddit.com/r/vim/comments/4ms4z0/org_mode_which_plugin_to_use_vimorganizer_or/][Reddit thread]]:
+    - [[https://github.com/jceb/vim-orgmode][vim-orgmode]] :: UNMAINTAINED
+    - [[https://github.com/hsitz/VimOrganizer][VimOrganizer]] :: ABANDENED
+    - [[https://github.com/axvr/org.vim][org.vim]] :: Aims to provide only syntaxe highlight
+    - [[https://github.com/dhruvasagar/vim-dotoo][VIM Do Too]] :: Inpired by OrgMode to provide a, promissing, taks manager for Vim
+
+But, they are either abandoned or, only, inspired by. Instead of a, intentionally, compatible port.
+Before I know if the current ports is good enough for my needs, I need to know what the original actually have.
+
+So, this how I ended up trying to use emacs as my main editor.
+
+** Disclaimer
+
+This is not an Emacs Tutorial. But, a description of my attempt to learn if Org Mode worth the cost of migration from Vim.
+I'm not arrogant enough to think I can teach someone how to use emacs.
+
+
+
+* Getting Started
+
+** Instalation instructions
+
+Vim /ubiquitousity/ is another reason I like it so much. Any new computer is one git clone behind of my environment.
+Thankfully it's not that hard to install emacs.
+
+#+BEGIN_SRC bash
+
+sudo apt install emacs git
+cd ~
+git clone https://github.com/acdesouza/emacs-config.git .emacs.d/
+emacs
+
+#+END_SRC
+
+First time you open emacs it will download all, uninstalled, packages.
+
+** My Workflow
+
+I intend to describe [[file:GTD.org][my current workflow with emacs bindings association]] in its own file.
+
+In order to provide context this is my workflow tl;dr overview:
+
+1. Read the messages in the company chat(usually, Slack) and emails looking for new tasks
+2. Add new discovered tasks in the To Do list.
+3. See the list of tasks to do
+4. Pick *one* task
+5. Launch the code editor and open the project directory
+6. Open the file to change. If more than one file is needed I vertically split and open both
+7. Split horizontally and open the related test above the file to change
+8. Make the change. Go to the terminal an run that test
+   1. Passing: git commit
+   2. Fail: go back to editor to fix the test
+9. At the end of the task close all files and start over.
+
+I mainly work with web projects build with Ruby on Rails, HTML, JavaScript and CSS.
+I try to keep as vanilla as I can. But, for some projects I need things like SCSS and the
+ruby Slim template.
+
+So,the whys, behind the howtos, are:
+- Select one, and only one task, to prevent context switch
+- See all artifacts I'm dealling with, in order to maintaing focus on the task at hand
+
+I'm missing a way to store the new tasks and errands with minimum distraction. The Org Mode
+Capture seems the Dumbledore's Pensieve. Exactly what I'm looking for.
+
+* Customizations and Plugins(Modes)
+
+** UX Customization
+
+- Shows line number and line:column position
+- Hides initial message, menu, toolbar, scrollbar, and percentage position
+- Stop playing hide-and-seek. Scroll only one line. And don't wrap long lines
+- Don't ever use TAB character(ASCII byte #9). Update it to spaces
+- Use 4 spaces for indentation
+- Update buffer with modified files outside emacs
+- I get used with [[https://en.wikipedia.org/wiki/Menlo_(typeface)][Menlo]], so it's my first choice for programming
+- I follow every recommendation of moving changes made by [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html][Emacs Easy Customization Tool]] to its own file. But, to be honest, I tried it few times. And don't have any opinion.
+- Highlight the matching parentheses when cursor is over one of then
+
+
+
+** Major and Minor Modes
+
+A [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Modes.html][mode]] is a piece of software enhancing emacs capabilities. Everyone else will call it a plugin.
+
+These are the modes I found to support the aforementioned workflow.
+
+*** Base modes
+
+- [[https://orgmode.org/][Org Mode]] :: *The* reason I'm trying emacs. For now, I'm focus in [[https://orgmode.org/manual/TODO-Items.html][Task Management]], [[https://orgmode.org/manual/Capture.html][OrgCapture]], and [[https://orgmode.org/manual/Agenda-Views.html][OrgAgenda]]
+- [[https://github.com/emacs-evil/evil][evil-mode]] :: Vim user, remember? So, I fell more comfortable to talk to the editor in order to modify the files.
+- [[https://www.gnu.org/software/emacs/manual/html_mono/ido.html][ido]] :: I really appreciate [[https://github.com/kien/ctrlp.vim][CtrlP]]. And I don't have an opinion on Helm and Ivy. So, I starting with stock as much as I can.
+- [[https://github.com/jojojames/dired-sidebar][dired-sidebar]] :: Because, sometimes, you don't remember the file name, but has a clue looking at the directories.
+- [[https://github.com/jacktasia/dumb-jump][dumb-jump]] :: Often I need to find a definition of a variable/method/class. This mode works as a grep backend for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][xref]] to resume my previous steps:
+    1. *grep* for it in the project root.
+    2. Copy the full path
+    3. Paste in the open file dialog.
+- [[https://github.com/bbatsov/projectile][projectile]] :: After opening the project root directory, I rarely change directory. So, having a way to scope grep and find is helpful.
+
+
+*** Ruby on Rails
+
+- [[https://github.com/emacs-mirror/emacs/blob/master/lisp/progmodes/ruby-mode.el][ruby-mode]] :: Default to emacs. I tried the [[github.com/zenspider/enhanced-ruby-mode][Enhanced Ruby Mode]]. But, I could see a ruby file been painting.
+- [[https://github.com/ruby/elisp-ruby-electric][ruby-electric]] :: Autoclose paired syntax elements like parens, quotes, etc
+- [[https://github.com/asok/projectile-rails][projectile-rails]] :: Especialization of projectile to handle rails project. Like search Model/Controller/View related to current file and alternate between code and test.
+- [[https://github.com/senny/rvm.el][rvm]] :: Point emacs to use the project's correct ruby version and gemset. Useful for apply rubocop rules and open a rails console.
+- [[https://github.com/yoshiki/yaml-mode][yaml-mode]] :: Syntax highlight and correct indentation
+- [[https://github.com/slim-template/emacs-slim][slim-mode]] :: Syntax highlight and correct indentation
+- [[https://github.com/nex3/sass-mode][sass-mode]] :: Syntax highlight and correct indentation
+    - [[https://github.com/nex3/haml-mode][haml-mode]] :: Dependency of sass-mode
+- [[https://github.com/fxbois/web-mode][web-mode]] :: Works for HTML, CSS, and JavaScript. Syntax highlight, correct indentation, insert tag, and matching parentheses/tags
