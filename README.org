@@ -93,7 +93,8 @@ Capture seems the Dumbledore's Pensieve. Exactly what I'm looking for.
 
 ** Major and Minor Modes
 
-A [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Modes.html][mode]] is a piece of software enhancing emacs capabilities. Everyone else will call it a plugin.
+A [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Modes.html][mode]] is a piece of software enhancing emacs capabilities. Enabled by the buffer content.
+Everyone else will call it a plugin.
 
 These are the modes I found to support the aforementioned workflow.
 
@@ -121,3 +122,316 @@ These are the modes I found to support the aforementioned workflow.
 - [[https://github.com/nex3/sass-mode][sass-mode]] :: Syntax highlight and correct indentation
     - [[https://github.com/nex3/haml-mode][haml-mode]] :: Dependency of sass-mode
 - [[https://github.com/fxbois/web-mode][web-mode]] :: Works for HTML, CSS, and JavaScript. Syntax highlight, correct indentation, insert tag, and matching parentheses/tags
+
+
+* FAC(Frequently Asked Commands)
+
+** Help
+
+   - Help..................: C-h C-h
+     - Find command by key.: c
+     - Find command desc...: F
+   - Describe key..........: C-h k C-n tells you what C-n does
+   - Numeric Argument......: M-NUMBER <key binding>: M-5 C-o creates 5 empty lines
+   - Open emacs manual.....: C-h i (info)
+   - Display packages......: C-h p (describe-package)
+   - Display key bidings...: C-h b
+     - Describe function under cursor.,,,.: C-h f<RET>
+     - Find a command containing PATTERN..: C-h a <PATTERN><RET>
+       -  Following the conventions for naming Emacs commands, here are some
+     words that you’ll find useful in apropos patterns.  By using them in
+     ‘C-h a’, you will also get a feel for the naming conventions.
+
+     char, line, word, sentence, paragraph, region, page, sexp, list,
+     defun, rect, buffer, frame, window, face, file, dir, register,
+     mode, beginning, end, forward, backward, next, previous, up, down,
+     search, goto, kill, delete, mark, insert, yank, fill, indent, case,
+     change, set, what, list, find, view, describe, default.
+
+
+** Open
+
+    - Open file.............: C-x C-f (find-file)
+    - Open new buffer.......: C-x b using a new buffer name
+    - Switch to buffer......: C-x b   (switch-to-buffer)
+    - Save buffer...........: C-x C-s (save-buffer)
+    - Close(kill) buffer....: C-x k   (kill-buffer)
+
+
+** Exit
+
+   - Save all and close....: C-x C-c (save-buffers-kill-terminal)
+   - Cancel a prefix.......: C-g
+
+** Search
+
+   - Incremental Search....: C-s <TERM>
+   - Backward search.......: C-r <TERM>
+   - RegExpe Search........: C-M-s <REGEXP>
+
+*** The [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][Xref]]
+
+    I'm using [[https://github.com/jacktasia/dumb-jump][Dumb Jump]] as backend. It's bind to gd
+
+    - Go to definition......: M-. (xref-find-definitions)
+    - Back from definition..: M-, (xref-pop-marker-stack)
+
+** Moving
+
+*** Frame
+
+    - Move to other frame...: C-x 5 o (other-frame)
+    - Next page.............: C-v     (scroll-up)
+    - Previous page.........: M-v     (scroll-down)
+    - Center page on cursor.: C-l     (recenter-top-bottom)
+
+*** Window
+
+    - Split horizontal......: C-x 2 (split-window-below)
+    - Split vertical........: C-x 3 (split-window-right)
+    - Close current window..: C-x 0 (delete-window)
+    - Close other windows...: C-x 1 (delete-other-windows)
+    - Move to other window..: C-x o (other-window)
+
+*** Buffer
+
+    - Go to top.............: M-<     (beginning-of-buffer)
+    - Next page.............: C-v     (scroll-up)
+    - Center page on cursor.: C-l     (recent-top-bottom)
+    - Previous page.........: M-v     (scroll-down)
+    - Go to bottom..........: M->     (end-of-buffer)
+    - Increase font.........: C-x C-= (text-scale-adjust)
+    - Decrease font.........: C-x C-- (text-scale-adjust)
+
+*** Line
+
+    - Go to line............: M-g g LineNumber
+    - Go to begin of line...: C-a (move-beginning-of-line)
+    - Go to end of line.....: C-e (move-end-of-line)
+    - Go one word forward...: M-f (forward-word)
+    - Go one word backward..: M-b (backward-word)
+
+** Edit
+
+*** Buffers
+
+    - Open file.............: C-x C-f (find-file)
+    - Open new buffer.......: C-x b using a new buffer name
+    - Save buffer...........: C-x C-s (save-buffer)
+    - Switch to buffer......: C-x b   (switch-to-buffer)
+    - Close(kill) buffer....: C-x k   (kill-buffer)
+    - Increase font.........: C-x C-=
+    - Decrease font.........: C-x C--
+    - Undo.......................: C-x u (undo)
+    - Yank(paste latest kill)..,.: C-y   (yank)
+    - Rotate to previous kills.: M-y   (yank-pop)
+
+*** Lines
+
+    - Add new line after cursor....: C-o (open-line)
+    - Delete to the end of line....: C-k (kill-line)
+    - Delete whole line............: C-S-backspace (kill-whole-line)
+
+*** Character and Words
+
+    - Delete word forward........: M-d (kill-word)
+    - Delete word backward.......: M-<DEL> (backward-kill-word)
+    - Kill until Char............: M-z CHAR (zap-to-char)
+
+** Mark(Select region)
+
+    - Select text:
+        - Using Shift+Arrow keys
+        - Go to the beginning.: C-<SPC>
+        - Go to the ending....: C-x C-x (exchange-point-and-mark)
+            - Also use it to move to the beginning or end of the mark
+    - Cancel selecion...................: C-g
+    - Search and replace marked region..: M-% (query-replace)
+    - Kill the region...................: C-w (kill-region)
+    - Kill and save(cut) region.........: M-w (kill-ring-region)
+
+*** Rectangles(vertical/column selection)
+
+    - Select text:
+    - Go to the beginning...: C-x-<SPC> move with arrows to the end
+    - Insert text...........: M-x string-insert-rectangle<RET> STRING<RET>
+    - Replace text..........: C-x r t STRING<RET>
+    - Kill rectangle........: C-x r k (kill-rectangle)
+    - Yank killed rectangle.: C-x r y (yank-rectangle)
+
+*** Textual Objects
+
+    - Mark a word........: M-@   (mark-word)
+    - Mark a paragraph...: M-h   (mark-paragraph)
+    - Mark defun.........: C-M-h (mark-defun) # Mark a function/method
+
+
+** Modes and Advanced Features
+
+*** Minibuffer
+
+    - Call Command by Name..: M-x (execute-extended-command)
+    - To call a Command N times..: M-<times> M-x
+    - Previous used.........: M-p
+    - Next used.............: M-n
+
+*** Scratch(Lisp Interpreter)
+
+    - Evaluate expression...: C-j
+
+*** Code complete
+
+**** [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dynamic-Abbrevs.html#Dynamic-Abbrevs][Dynamic Abbrev]]
+
+    - Complete the word.: C-M-/  (dabbrev-completion)
+    - Expand the word...: M-/    (dabbrev-expand)
+
+*** [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][Dired(Directory Editor)]]
+
+    - Open ..................: C-x d   (ido-dired)
+    - Open in minibuffer.....: C-x C-f (ido-find-file)
+    - Open in another window.: C-x 4 d (dired-other-window)
+    - Quit ..................: q       (quit-window)
+
+    - Mark file under cursor..........: m
+    - Mark files with regexp..........: % m regexp<RET>
+    - Remove file under cursor mark...: u
+    - Remove all file marks...........: U
+    - Copy marked/file under cursor...: C
+    - Move marked/file under cursor...: R
+    - Delete marked/file under cursor.: D
+
+*** Projectile
+
+    Mode prefix: C-c p
+
+    - Go to project..................: C-c p p (projectile-switch-project)
+    - Find file in project...........: C-c p f (projectile-find-file)
+    - Toggle Implementation<->Test...: C-c p t (projectile-toggle-between-implementation-and-test)
+    - Switch to the previous project buffer..: C-c p left
+    - Switch to the next project buffer......: C-c p right
+    - Close project's buffers................: C-c p k (projectile-kill-buffers)
+
+
+*** Projectile Rails
+
+    Mode prefix: C-c r
+
+    - Go to view template for current controller action...: C-c r V
+    - Go to controller from current view..................: C-c r C
+    - Go to a test connected with the current resource....: C-c r T
+    - Open rails console..................................: C-c r r
+    - Open rails server...................................: C-c r R
+
+*** web-mode
+
+    - See web-mode-expanders, web-mode-engines-snippets
+    - Add Rails Scriptlet...: =/ for <%= | %>
+                              -/ for <% | %>
+*** Org Mode
+
+    [[https://www.youtube.com/watch?v=oJTwQvgfgMM][Emacs Org-mode - a system for note-taking and project planning]]
+
+    - Open/shut .....: TAB (org-cycle)
+    - Toggle all.....: C-u TAB
+
+**** [[https://orgmode.org/manual/The-Very-Busy-C_002dc-C_002dc-Key.html#The-Very-Busy-C_002dc-C_002dc-Key][Context specific: C-c C-c]]
+
+    - Toggle checkbox when checkbox under cursor
+    - Add tags to heading when heading under cursor
+
+
+**** Motion
+
+    - Next heading.......: C-c C-n (org-next-visible-heading)
+    - Previous heading...: C-c C-p (org-previous-visible-heading)
+    - Next same level heading.......: C-c C-f (org-forward-heading-same-level)
+    - Previous same level heading...: C-c C-b (org-backward-heading-same-level)
+
+**** [[https://orgmode.org/guide/Hyperlinks.html][Hyperlinks]]
+
+    - Edit....: C-c C-l
+    - Open....: C-c C-o
+    - Back....: C-c &
+
+**** Headings/List
+
+    [[https://emacs.stackexchange.com/questions/19843/how-to-automatically-adjust-an-org-task-state-with-its-children-checkboxes][Automatic cicle TODO->DONE]]
+
+    #+BEGIN_SRC org
+    * TODO Create a todo list [%]
+        - [ ] [/] First item of the todo list
+            - [ ] Think what you have todo
+            - [ ] Write it down
+        - [ ] [/] Priorization
+            - [ ] If can do only one thing and drop all others? It's the first item.
+            - [ ] Imagine you did the first item. What else?
+     #+END_SRC
+
+***** Edit
+
+      - Add new item same level....: M-RET     (org-meta-return)
+      - Add new item with TODO key.: M-S-RET   (org-insert-todo-heading)
+      - Promote subtree one level..: M-S-LEFT  (org-promote-subtree)
+      - Demote subtree one level...: M-S-RIGHT (org-demote-subtree)
+      - Move subtree up............: M-UP      (org-move-subtree-up)
+      - Move subtree down..........: M-DOWN    (org-move-subtree-down)
+      - Select subtree.............: C-c @     (org-mark-subtree) ;; Repeat to select next same level subtree
+      - Clone subtree..............: C-c C-x c (org-clone-subtree-with-time-shift)
+      - Toggle checkbox............: C-c C-c   (org-toggle-checkbox)
+
+**** [[https://orgmode.org/manual/Setting-Tags.html#Setting-Tags][Tags]]
+
+    - Add tag from TAGS list..: C-c C-c
+    - Add arbitrary tag.......: C-c C-q (org-set-tags-command)
+    - [[https://orgmode.org/manual/Matching-tags-and-properties.html#Matching-tags-and-properties][Search tags]].............: C-c /   (org-match-sparse-tree)
+
+
+**** [[https://orgmode.org/manual/Property-Syntax.html#Property-Syntax][Properties]]
+
+    - Add a list of available properties: #+PROPERTY: PropertyName_ALL Opt1 Opt2 "Opt 3"
+    - Cycle through property options: S-LEFT or S-RIGHT ()
+    - Add a property.........: C-c C-x p (org-set-property)
+    - In the property DRAWER.: C-c C-c show Properies actions
+
+**** [[https://orgmode.org/manual/Creating-Timestamps.html#Creating-Timestamps][Timestamp]]
+
+    - TIMESTAMP :: An appointment to that date/time
+    - SCHEDULE :: Something you'd like to start at a date/time
+    - DEADLINE :: Something you'd like to finish by a date/time
+
+    - Add a timestamp.............................: C-c .   (org-time-stamp)
+    - Move timestamp back and forth...............: S-LEFT S-RIGHT
+    - Calculate total days between 2 timestamps...: C-c C-y (org-evaluate-time-range)
+    - Add a DEADLINE..............................: C-c C-d (org-deadline)
+    - Add a SCHEDULE..............................: C-c C-s (org-schedule)
+
+
+**** Org Capture
+
+    - Capture .............................: C-c c   (org-capture)
+    - Move TODO at point to another file...: C-c C-w (org-refile)
+
+
+**** [[https://orgmode.org/manual/Archiving.html#Archiving][Archive]]
+
+    Creates a file.org_archive file with the archived TODO items
+    https://orgmode.org/manual/Moving-subtrees.html#Moving-subtrees
+
+    - Archive a TODO in the same file...: C-c C-x A (org-archive-to-archive-sibling)
+    - Archive to a new file.............: C-c $     (org-archive-subtree)
+    - Open Archive headline.............: C-TAB     (org-force-cycle-archived)
+
+**** [[https://orgmode.org/manual/Agenda-Commands.html#Agenda-Commands][Org Agenda]]
+
+    - Open agenda............: C-c a   (org-agenda)
+    - Show next 7 days.......: a
+    - Go to previous week....: b       (org-agenda-earlier)
+    - Go to current week.....: .       (org-agenda-goto-today)
+    - Go to next week........: f       (org-agenda-later)
+    - Change TODO status.....: t       (org-agenda-todo)
+    - Goto TODO at point.....: TAB     (org-agenda-goto)
+    - Postpone a heading.....: S-Right (org-agenda-do-date-later)
+    - Save all orgs files....: s       (org-save-all-org-buffers)
+    - Refresh the agenda.....: r       (org-agenda-redo)
+    - Exit agenda window.....: x       (org-agenda-exit)
