@@ -43,6 +43,9 @@
             :height 120
             :weight 'normal
             :width  'normal)
+(when (eq system-type 'darwin)
+      (set-face-attribute 'default nil :height 135)
+      )
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)
