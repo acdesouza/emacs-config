@@ -51,6 +51,10 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(when (string= system-type "darwin")
+  (message "It worked")
+  (setq insert-directory-program "/usr/local/bin/gls")) ;; https://stackoverflow.com/a/56096775/436552
+
 ;; Initialize package sources
 ;; https://github.com/jwiegley/use-package
 (require 'package)

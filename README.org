@@ -46,6 +46,21 @@ emacs
 
 First time you open emacs it will download all, uninstalled, packages.
 
+*** MacOS
+
+Emacs rely on GNU tools for some basic features, like directory listing.
+Since MacOS is not GNU-based its src_sh{ls} lacks support for src_sh{--dired} and src_sh{--group-directories-first}.
+
+This means you need to [[https://stackoverflow.com/a/56096775/436552][install GNU Coreutils in MacOS]]. I use [[https://brew.sh/][homebrew]] for that:
+
+#+BEGIN_SRC bash
+brew install coreutils
+#+END_SRC
+
+Brew will install it with a G, for GNU, prefix. So, you can gls instead of ls.
+
+
+
 ** My Workflow
 
 I intend to describe [[file:GTD.org][my current workflow with emacs bindings association]] in its own file.
