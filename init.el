@@ -80,7 +80,10 @@
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :defer nil
-  :config (evil-mode 1))
+  :config
+  (add-to-list 'evil-buffer-regexps
+               '("\\*xref\\*" . emacs))
+  :init (evil-mode 1))
 
 
 

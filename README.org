@@ -191,6 +191,14 @@ These are the modes I found to support the aforementioned workflow.
     - Go to definition......: M-. (xref-find-definitions)
     - Back from definition..: M-, (xref-pop-marker-stack)
 
+    Inside \*xref\* buffer:
+
+    - Open previous ref.....................: p OR , (xref-previous-line)
+    - Open next ref.........................: n OR . (xref-next-line)
+    - Open current ref and close \*xref\*...: TAB    (xref-quit-and-goto-xref)
+    - Close \*xref\* buffer.................: q      (xref-quit)
+    - Replace...............................: r /pattern/ RET /new_value/ // [[https://github.com/emacs-lsp/lsp-mode/issues/2997][NOT WORKING]]
+
 ** Moving
 
 *** Frame
@@ -315,6 +323,7 @@ These are the modes I found to support the aforementioned workflow.
     - Copy marked/file under cursor...: C
     - Move marked/file under cursor...: R
     - Delete marked/file under cursor.: D
+    - Add subdirectory................: +
 
 *** Projectile
 
