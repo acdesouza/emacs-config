@@ -331,6 +331,12 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
 ;;   ("\\.js\\'"   . web-mode) Loses Jump To Definition. Maybe, take a look at js2-mode?
      ("\\.erb\\'"  . web-mode)))
 
+;; js-mode
+;; https://www.emacswiki.org/emacs/JavaScriptMode
+(use-package js
+  :config
+	(setq js-indent-level 2))
+
 ;; slim-mode
 ;; https://github.com/slim-template/emacs-slim
 (use-package slim-mode)
