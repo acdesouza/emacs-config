@@ -138,53 +138,54 @@
   :bind (("C-c a" . org-agenda)
      ("C-c c" . org-capture))
   :mode ("\\.org$" . org-mode)
-  :config (progn
-            (setq truncate-lines nil) ;; Wrapping lines
-        (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)")))
+  :config
+  (setq truncate-lines nil ;; Wrapping lines
+        org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)"))
         ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
-        (setq org-agenda-category-icon-alist
-          `(
-            ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
-            ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
-            ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
-            ))
-        (setq org-agenda-ndays 7)
-        (setq org-agenda-start-on-weekday nil)
-        (setq org-agenda-skip-scheduled-if-done t)
-        (setq org-agenda-skip-deadline-if-done t)
-        (setq org-directory "~/org")
-        (setq org-agenda-files (list org-directory))
-        (setq org-default-notes-file (concat org-directory "/notes.org"))
-        (setq org-refile-targets
-          '((nil :maxlevel . 1)
-            (org-agenda-files :maxlevel . 1)))
-        (setq org-log-into-drawer "LOGBOOK")
+        org-agenda-category-icon-alist
+        `(
+          ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
+          ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
+          ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
+          )
+        org-agenda-ndays 7
+        org-agenda-start-on-weekday nil
+        org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-directory "~/org"
+        org-agenda-files (list org-directory)
+        org-agenda-include-diary t
+        org-default-notes-file (concat org-directory "/notes.org")
+        org-refile-targets
+        '((nil :maxlevel . 1)
+          (org-agenda-files :maxlevel . 1))
+        org-log-into-drawer "LOGBOOK"
         ;; https://orgmode.org/manual/Template-expansion.html
-        (setq org-capture-templates
-          '(("t" "Task" entry
-             (file+headline "~/org/notes.org" "Inbox")
-             "** TODO %^{Task}
+        org-capture-templates
+        '(("t" "Task" entry
+           (file+headline "~/org/notes.org" "Inbox")
+           "** TODO %^{Task}
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
 :PROPERTIES:
 :CREATED: %U
 :END:"
-             :empty-lines-after 1)
-            ("m" "Meeting" entry
-             (file+headline "~/org/notes.org" "Meetings")
-             "** %^{Meeting}
+           :empty-lines-after 1)
+          ("m" "Meeting" entry
+           (file+headline "~/org/notes.org" "Meetings")
+           "** %^{Meeting}
 %^{Starting at}T
 :PROPERTIES:
 :CREATED: %U
 :END:"
-             :empty-lines-after 1)
-            ("l" "Read/Watch it Later" entry
-             (file+headline "~/org/notes.org" "Read it Later")
-             "** TODO [[%^{URL}][%^{Title}]]
+           :empty-lines-after 1)
+          ("l" "Read/Watch it Later" entry
+           (file+headline "~/org/notes.org" "Read it Later")
+           "** TODO [[%^{URL}][%^{Title}]]
 :PROPERTIES:
 :CREATED: %U
 :END:"
-             :empty-lines-after 1)
-            ))))
+           :empty-lines-after 1)
+          )))
 
 
 
