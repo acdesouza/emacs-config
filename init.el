@@ -139,6 +139,7 @@
      ("C-c c" . org-capture))
   :mode ("\\.org$" . org-mode)
   :config (progn
+            (setq truncate-lines nil) ;; Wrapping lines
         (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)")))
         ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
         (setq org-agenda-category-icon-alist
