@@ -44,8 +44,22 @@
             :weight 'normal
             :width  'normal)
 (when (eq system-type 'darwin)
-      (set-face-attribute 'default nil :height 135)
-      )
+  (set-face-attribute 'default nil :height 140))
+
+(when (eq system-type 'darwin)
+  "Use Option as META and Command as HYPER"
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'hyper)
+
+  ;; MacOS Keybonds
+  (global-set-key [(hyper a)] 'mark-whole-buffer)
+  (global-set-key [(hyper c)] 'kill-ring-save)
+  (global-set-key [(hyper v)] 'yank)
+  (global-set-key [(hyper s)] 'save-buffer)
+  (global-set-key [(hyper l)] 'goto-line)
+  (global-set-key [(hyper w)] 'delete-frame)
+  (global-set-key [(hyper n)] 'make-frame)
+  (global-set-key [(hyper z)] 'undo))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)

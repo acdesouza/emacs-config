@@ -48,6 +48,13 @@ First time you open emacs it will download all, uninstalled, packages.
 
 *** MacOS
 
+    The [[https://github.com/syl20bnr/spacemacs/issues/12009][default emacs from Homebrew has a very annoying random flicker]]. To prevent me lost my mind I followed the [[https://github.com/syl20bnr/spacemacs/issues/12009#issuecomment-514793644][conorfoley suggestion]] to use [[https://github.com/railwaycat/homebrew-emacsmacport][railwaycat/homebrew-emacsmacport]]
+
+#+BEGIN_SRC bash
+brew install --cask emacs-mac
+#+END_SRC
+
+
 Emacs rely on GNU tools for some basic features, like directory listing.
 Since MacOS is not GNU-based its src_sh{ls} lacks support for src_sh{--dired} and src_sh{--group-directories-first}.
 
