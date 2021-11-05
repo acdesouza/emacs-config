@@ -95,8 +95,13 @@
 (use-package evil
   :defer nil
   :config
-  (add-to-list 'evil-buffer-regexps
+  (progn
+    (add-to-list 'evil-buffer-regexps
                '("\\*xref\\*" . emacs))
+
+    ;; set leader
+    (evil-set-leader 'visual (kbd "\\"))
+    (evil-define-key 'visual 'global (kbd "<leader>c") 'comment-or-uncomment-region))
   :init (evil-mode 1))
 
 

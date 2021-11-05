@@ -279,6 +279,7 @@ These are the modes I found to support the aforementioned workflow.
     - Search and replace marked region..: M-% (query-replace)
     - Kill the region...................: C-w (kill-region)
     - Kill and save(cut) region.........: M-w (kill-ring-region)
+    - Toggle comment on region..........: \c  (comment-or-uncomment-region)
 
 *** Rectangles(vertical/column selection)
 
