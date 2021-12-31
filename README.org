@@ -12,7 +12,7 @@ if the so-called OrgMode is so helpful as its fandom sells.
 
 Looking for a implementation of Org for Vim I found some projects in a [[https://www.reddit.com/r/vim/comments/4ms4z0/org_mode_which_plugin_to_use_vimorganizer_or/][Reddit thread]]:
     - [[https://github.com/jceb/vim-orgmode][vim-orgmode]] :: UNMAINTAINED
-    - [[https://github.com/hsitz/VimOrganizer][VimOrganizer]] :: ABANDENED
+    - [[https://github.com/hsitz/VimOrganizer][VimOrganizer]] :: ABANDONED
     - [[https://github.com/axvr/org.vim][org.vim]] :: Aims to provide only syntaxe highlight
     - [[https://github.com/dhruvasagar/vim-dotoo][VIM Do Too]] :: Inpired by OrgMode to provide a, promissing, taks manager for Vim
 
