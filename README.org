@@ -67,8 +67,18 @@ brew install coreutils
 Brew will install it with a G, for GNU, prefix. So, you can gls instead of ls.
 
 
+** Updating instructions
 
-** My Workflow
+   After some time, even emacs modes, got some updates. To make sure you're running the latest versions once in a while update them.
+
+   1. M-x list-packages :: Open emacs and list all available packages
+   2. Wait for it updating the packages
+   3. S-u :: Mark the new packages to update
+   4. x :: Command the update of marked packages
+
+
+
+* My Workflow
 
 I intend to describe [[file:GTD.org][my current workflow with emacs bindings association]] in its own file.
 
