@@ -12,6 +12,7 @@
 (setq-default mode-line-percent-position nil) ;; Removes file percent position(Top % Bot)
 
 (setq-default scroll-step 1)    ;; Don't crazy jump after a one line scroll
+
 (setq-default truncate-lines 1) ;; Stop wrapping lines
 
 
@@ -157,9 +158,12 @@
   :bind (("C-c a" . org-agenda)
      ("C-c c" . org-capture))
   :mode ("\\.org$" . org-mode)
+  :hook
+  (org-mode . (lambda ()
+                (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+                (visual-line-mode)))
   :config
-  (setq truncate-lines nil ;; Wrapping lines
-        org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)"))
+  (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d@/!)" "CANCELED(c@)"))
         ;; https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/
         org-agenda-category-icon-alist
         `(
