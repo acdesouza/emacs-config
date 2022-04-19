@@ -103,7 +103,9 @@
     ;; set leader
     (evil-set-leader 'visual (kbd "\\"))
     (evil-define-key 'visual 'global (kbd "<leader>c") 'comment-or-uncomment-region))
-  :init (evil-mode 1))
+  :init
+  (setq evil-want-C-i-jump nil)
+  (evil-mode 1))
 
 
 
