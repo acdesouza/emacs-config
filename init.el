@@ -151,7 +151,8 @@
   :config (progn
             (setq doom-modeline-unicode-fallback t
                   doom-modeline-icon (display-graphic-p)
-                  doom-modeline-minor-modes t)
+                  doom-modeline-minor-modes t
+                  doom-modeline-buffer-file-name-style 'relative-from-project)
             (advice-add #'fit-window-to-buffer :before (lambda (&rest _) (redisplay t)))))
 
 
