@@ -44,31 +44,6 @@
             :height 120
             :weight 'normal
             :width  'normal)
-(when (eq system-type 'darwin)
-  (set-face-attribute 'default nil :height 140))
-
-(when (eq system-type 'darwin)
-  "Use Option as META and Command as HYPER"
-  (setq mac-option-modifier 'meta)
-  (setq mac-command-modifier 'hyper)
-
-  ;; MacOS Keybonds
-  (global-set-key [(hyper a)] 'mark-whole-buffer)
-  (global-set-key [(hyper c)] 'kill-ring-save)
-  (global-set-key [(hyper v)] 'yank)
-  (global-set-key [(hyper s)] 'save-buffer)
-  (global-set-key [(hyper l)] 'goto-line)
-  (global-set-key [(hyper w)] 'delete-frame)
-  (global-set-key [(hyper n)] 'make-frame)
-  (global-set-key [(hyper z)] 'undo))
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-(when (string= system-type "darwin")
-  (message "It worked")
-  (setq insert-directory-program "/usr/local/bin/gls")) ;; https://stackoverflow.com/a/56096775/436552
 
 ;; Initialize package sources
 ;; https://github.com/jwiegley/use-package
@@ -375,3 +350,16 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
   :mode ("\\.sass\\'" . sass-mode))
 
 (use-package haml-mode)
+
+
+
+
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(when (eq system-type 'darwin)
+  (setq macos-config-file (concat user-emacs-directory "init-macos.el"))
+  (when (file-exists-p macos-config-file)
+    (load macos-config-file)))
