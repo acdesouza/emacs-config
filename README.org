@@ -278,6 +278,27 @@ These are the modes I found to support the aforementioned workflow.
     - Delete word backward.......: M-<DEL> (backward-kill-word)
     - Kill until Char............: M-z CHAR (zap-to-char)
 
+*** Alignment
+
+- M-x align-regexp RET = RET :: Align the `=` sign on a list of variables
+  FROM
+  #+BEGIN_SRC org
+    a = 1
+    potato = 2
+    closest = 5
+  #+END_SRC
+
+  TO
+  #+BEGIN_SRC org
+    a       = 1
+    potato  = 2
+    closest = 5
+  #+END_SRC
+
+- [[https://emacs.stackexchange.com/a/2692/31880][Columnize hashes]] :: Align Ruby hashes or JSON objects
+
+
+
 ** Mark(Select region)
 
     - Select text:
